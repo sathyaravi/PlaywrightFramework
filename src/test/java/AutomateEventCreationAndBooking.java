@@ -7,6 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.nio.file.Paths;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static java.lang.Integer.parseInt;
 import static java.util.Collections.replaceAll;
@@ -17,6 +19,7 @@ public class AutomateEventCreationAndBooking {
     Playwright playwright;
     Browser browser;
     Page page;
+    BrowserContext context;
     @BeforeMethod
     public void setUp(){
 
@@ -24,7 +27,14 @@ public class AutomateEventCreationAndBooking {
 
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
 
-        page = browser.newPage();
+        context=browser.newContext();
+
+        context.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
+
+        page=context.newPage();
 
         page.navigate("https://eventhub.rahulshettyacademy.com/login");
 
@@ -62,7 +72,7 @@ public class AutomateEventCreationAndBooking {
 
         page.getByLabel("Venue").fill("AB Convention Centre");
 
-        page.getByLabel("Event Date & Time").fill("2026-08-26T17:35");
+        page.getByLabel("Event Date & Time").fill("2026-10-29T17:35");
 
         page.getByLabel("Price").fill("230");
 
@@ -176,6 +186,9 @@ public class AutomateEventCreationAndBooking {
 
     @AfterMethod
     public void tearDown(){
+
+        context.tracing().stop(new Tracing.StopOptions()
+                .setPath(Paths.get("trace1.zip")));
 
         browser.close();
 
