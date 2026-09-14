@@ -38,7 +38,7 @@ public class BaseTest {
         }
         else{
             //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-            browser = playwright.chromium().launch();
+            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
 
         }
 
@@ -62,13 +62,19 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
-        context.tracing().stop(new Tracing.StopOptions()
-                .setPath(Paths.get("trace1.zip")));
+        if (context != null) {
+                context.tracing().stop(new Tracing.StopOptions()
+                        .setPath(Paths.get("trace1.zip")));
+            }
 
-        browser.close();
+            if (browser != null) {
+                browser.close();
+            }
 
-        playwright.close();
+            if (playwright != null) {
+                playwright.close();
+            }
+        }
 
 
     }
-}
