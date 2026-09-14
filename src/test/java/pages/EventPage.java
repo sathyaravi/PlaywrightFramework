@@ -75,6 +75,9 @@ public class EventPage {
 
         Locator targetEventAfterBooking=eventCardsAfterBooking.filter(new Locator.FilterOptions().setHasText(titleCard));
 
+        // Increase timeout to 60 seconds for this specific wait
+        targetEventAfterBooking.waitFor(new Locator.WaitForOptions().setTimeout(60000));
+
         String seatAvailabilityAfterBooking=targetEventAfterBooking.getByText("seats").innerText();
 
         System.out.println("After Booking:"+seatAvailabilityAfterBooking);

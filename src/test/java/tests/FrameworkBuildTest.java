@@ -47,6 +47,8 @@ public class FrameworkBuildTest extends BaseTest{
 
         bookingFormPage.verifyBooking();
 
+        page.waitForTimeout(2000);
+
         int seatAfterBooking=event.getSeatsCountAfterBooking(titleCard);
 
         //
