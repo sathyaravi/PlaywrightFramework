@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestSuites" parallel="classes" thread-count="3">
+    <test name="EndtoEndTests">
+        
+        <classes>
+            <class name="tests.FrameworkDataDrivenTest"/>
+            <class name="tests.APIE2ETesting"/>
+            <class name="tests.HandlingUIComponentsTest"/>
+        </classes>
+        
+    </test>
+</suite>

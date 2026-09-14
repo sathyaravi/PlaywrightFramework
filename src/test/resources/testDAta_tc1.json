@@ -1,0 +1,10 @@
+[
+  { "email":"user1.yahoo.co.in",
+    "password": "password1"
+  },
+
+  { "email":"user2.google.co.in",
+    "password":"password2"
+  }
+
+]

@@ -1,5 +1,6 @@
+package tests;
+
 import com.jayway.jsonpath.JsonPath;
-import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.Playwright;

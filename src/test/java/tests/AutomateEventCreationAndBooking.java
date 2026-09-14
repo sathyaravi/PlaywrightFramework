@@ -1,5 +1,6 @@
+package tests;
+
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
 import org.testng.Assert;
@@ -11,7 +12,6 @@ import java.nio.file.Paths;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static java.lang.Integer.parseInt;
-import static java.util.Collections.replaceAll;
 
 public class AutomateEventCreationAndBooking {
 

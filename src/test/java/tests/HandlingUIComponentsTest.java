@@ -1,3 +1,5 @@
+package tests;
+
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import org.testng.annotations.AfterMethod;
@@ -8,7 +10,7 @@ import java.nio.file.Paths;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class HandlingUIComponents {
+public class HandlingUIComponentsTest {
 
     Playwright playwright;
 
@@ -18,7 +20,7 @@ public class HandlingUIComponents {
 
     BrowserContext context;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
 
         playwright = Playwright.create();
@@ -38,7 +40,7 @@ public class HandlingUIComponents {
 
 
     }
-    @Test
+    @Test(groups = {"Smoke"})
     public void handleHiddenDialog(){
 
         assertThat(page.getByPlaceholder("Hide/Show Example")).isVisible();
@@ -67,7 +69,7 @@ public class HandlingUIComponents {
 
     }
 
-    @Test
+    @Test(groups = {"Smoke"})
     public void handleFrames(){
 
         FrameLocator frame = page.frameLocator("#courses-iframe");
@@ -80,7 +82,7 @@ public class HandlingUIComponents {
 
     }
 
-    @Test
+    @Test(groups = {"Smoke"})
     public void takeScreenshots(){
 
         page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("pageScreenshot1.png")));
@@ -94,7 +96,7 @@ public class HandlingUIComponents {
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
 
         context.tracing().stop(new Tracing.StopOptions()

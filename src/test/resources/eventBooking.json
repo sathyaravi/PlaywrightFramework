@@ -1,0 +1,35 @@
+[
+{
+"titleCard":"QA Summit20",
+"description":"QA Automation Testing20",
+"category":"Conference",
+"city":"Chennai",
+"venue":"Deccan Hall",
+"event datetime":"2026-10-29T17:35",
+"price":"150",
+"seats":"100",
+"fullName":"John Doe",
+"email":"john.doe@mail.com",
+"phone":"9887654332"
+
+},
+
+{
+"titleCard":"QA Conference1",
+"description":"QA Playwright Automation Testing11",
+"category":"Conference",
+"city":"Bangalore",
+"venue":"Crane Hall",
+"event datetime":"2026-11-29T17:35",
+"price":"250",
+"seats":"200",
+"fullName":"Jane Doe",
+"email":"jane.doe@mail.com",
+"phone":"98876543221"
+
+
+}
+
+
+
+]
