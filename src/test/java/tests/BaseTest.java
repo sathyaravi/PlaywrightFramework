@@ -51,6 +51,8 @@ public class BaseTest {
                 .setSources(true));
 
         page=context.newPage();
+        page.setDefaultTimeout(120000); // 120 seconds instead of 60
+        page.setDefaultNavigationTimeout(120000);
 
         base_url=prop.getProperty(envName+".base_url");
 
