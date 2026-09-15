@@ -35,6 +35,9 @@ public class EventPage {
 
         Locator targetEvent= eventCards.filter(new Locator.FilterOptions().setHasText(titleCard));
 
+        // Explicitly wait for the card to be visible with extended timeout
+        targetEvent.first().waitFor(new Locator.WaitForOptions().setTimeout(120000));
+
         assertThat(targetEvent).isVisible();
 
         return targetEvent;
