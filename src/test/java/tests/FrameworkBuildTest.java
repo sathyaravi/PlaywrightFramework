@@ -15,12 +15,13 @@ public class FrameworkBuildTest extends BaseTest{
 
 
 
-    @Test(groups = "framework", description= "Create Event- Book and verify if its booked")
+    @Test(groups = "smoke", description= "Create Event- Book and verify if its booked")
     public void createandBookEvent(){
 
         //Step 1 - Create an Event
 
         String titleCard="QA Summit12";
+
         LoginPage login = new LoginPage(page,base_url);
 
         DashboardPage dashboard = login.loginApplication();

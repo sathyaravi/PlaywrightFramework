@@ -25,7 +25,7 @@ public class FrameworkDataDrivenTest extends BaseTest{
 
     }
 
-    @Test(dataProvider = "eventBooking", description= "Create Event- Book and verify if its booked")
+    @Test(groups={"framework"},dataProvider = "eventBooking", description= "Create Event- Book and verify if its booked")
     public void createandBookEvent(HashMap<String,String> data){
 
         //Step 1 - Create an Event

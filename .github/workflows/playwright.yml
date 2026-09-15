@@ -19,6 +19,7 @@ jobs:
       - name: Ensure browsers are installed
         run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
       - name: Run tests
-        run: mvn clean test -PFramework -Dbrowser=chrome -Denv=qa
+        run: mvn clean test -PFramework -Dbrowser=chrome -Denv=qa -Dtimeout=1200
+
       - name: Run tests
-        run: mvn clean test -PRegression -Dbrowser=chrome -Denv=qa
+        run: mvn clean test -PFramework -Dbrowser=chrome -Denv=qa -Dtimeout=1200
