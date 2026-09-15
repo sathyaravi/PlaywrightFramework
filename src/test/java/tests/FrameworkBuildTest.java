@@ -50,7 +50,7 @@ public class FrameworkBuildTest extends BaseTest{
 
         page.waitForTimeout(2000);
 
-        int seatAfterBooking=event.getSeatsCountAfterBooking(titleCard);
+        int seatAfterBooking=event.getSeatsCountAfterBooking(titleCard,seatBefore);
 
         //
 

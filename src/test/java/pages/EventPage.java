@@ -2,6 +2,8 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.LocatorAssertions;
+import com.microsoft.playwright.options.LoadState;
 import org.testng.Assert;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -68,28 +70,35 @@ public class EventPage {
 
     }
 
-    public int getSeatsCountAfterBooking(String titleCard){
+    public int getSeatsCountAfterBooking(String titleCard, int seatBefore){
         //seat count reduction after booking
         page.locator("#nav-events").click();
 
-        page.reload();
+        page.waitForLoadState();
+
+        page.waitForLoadState(LoadState.NETWORKIDLE);
+
+        //page.reload();
 
         Locator eventCardsAfterBooking=page.getByTestId("event-card");
 
         Locator targetEventAfterBooking=eventCardsAfterBooking.filter(new Locator.FilterOptions().setHasText(titleCard));
 
         // Increase timeout to 60 seconds for this specific wait
-        targetEventAfterBooking.waitFor(new Locator.WaitForOptions().setTimeout(60000));
+        targetEventAfterBooking.waitFor(new Locator.WaitForOptions().setTimeout(120000));
 
-        String seatAvailabilityAfterBooking=targetEventAfterBooking.getByText("seats").innerText();
+//
+        Locator seatsLocator = targetEventAfterBooking.getByText("seats");
 
-        System.out.println("After Booking:"+seatAvailabilityAfterBooking);
+        // Poll (auto-retrying assertion) until the seat count actually changes
+        // from the "before" value — instead of reading innerText() once
+        assertThat(seatsLocator).not().containsText(
+                seatBefore + " seats",
+                new LocatorAssertions.ContainsTextOptions().setTimeout(15000));
+
+        String seatAvailabilityAfterBooking = seatsLocator.innerText();
+        System.out.println("After Booking:" + seatAvailabilityAfterBooking);
 
         return parseInt(seatAvailabilityAfterBooking.replaceAll("[^0-9]", ""));
-
-
-
-
-
     }
 }

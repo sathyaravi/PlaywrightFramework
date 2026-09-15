@@ -1,8 +1,6 @@
 package tests;
 
 import com.microsoft.playwright.Locator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -29,7 +27,7 @@ public class FrameworkDataDrivenTest extends BaseTest{
     public void createandBookEvent(HashMap<String,String> data){
 
         //Step 1 - Create an Event
-
+        String titleCard = data.get("titleCard") + "_" + System.currentTimeMillis();
 
         LoginPage login = new LoginPage(page,base_url);
 
@@ -37,7 +35,7 @@ public class FrameworkDataDrivenTest extends BaseTest{
 
         AdminPage adminPage = dashboard.eventsPage();
 
-        adminPage.createEvents(data.get("titleCard"),
+        adminPage.createEvents(titleCard,
                 data.get("description"),
                 data.get("category"),
                 data.get("city"),
@@ -53,7 +51,8 @@ public class FrameworkDataDrivenTest extends BaseTest{
 
         event.goTo();
 
-        Locator targetEvent=event.findEventCard(data.get("titleCard"));
+        Locator targetEvent=event.findEventCard(titleCard);
+
 
         int seatBefore=event.getSeatsCount(targetEvent);
 
@@ -65,7 +64,7 @@ public class FrameworkDataDrivenTest extends BaseTest{
 
         bookingFormPage.verifyBooking();
 
-        int seatAfterBooking=event.getSeatsCountAfterBooking(data.get("titleCard"));
+        int seatAfterBooking=event.getSeatsCountAfterBooking(titleCard,seatBefore);
 
         //
 
